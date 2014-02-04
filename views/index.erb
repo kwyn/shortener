@@ -7,7 +7,9 @@
     <a href="/<%= link.id %>">Path: /<%= link.id %></a>
     <% @clicks.each do |click| %>
 	    <% if click.link_id == link.id %>
-		    <label>Last Click: <%= click.created_at %></label>
+	    <% t = click.created_at.in_time_zone('Pacific Time (US & Canada)') %>
+	    
+		    <label><%= t.strftime("Last clicked at %m/%d/%Y %I:%M%p.") %></label>
 	    <% end %>
     <% end %>
   </li>
