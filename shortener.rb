@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'active_record'
 require 'pry'
+require 'json'
 
 ###########################################################
 # Configuration
@@ -35,7 +36,7 @@ end
 ###########################################################
 
 get '/' do
-    @links = [] # FIXME
+    @links = Link.all
     erb :index
 end
 
@@ -43,8 +44,9 @@ get '/new' do
     erb :form
 end
 
-post '/new' do
-    # PUT CODE HERE TO CREATE NEW SHORTENED LINKS
+post '/new' do 
+    link = Link.create(params)
+    link.url
 end
 
 # MORE ROUTES GO HERE

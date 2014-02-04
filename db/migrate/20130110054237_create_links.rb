@@ -9,10 +9,21 @@
 class CreateLinks < ActiveRecord::Migration
     # PUT MIGRATION CODE HERE TO SETUP DATABASE
 
-    def self.up
-    end
+    # def self.up
+    #   create_table :links do |t|
+    #     t.string :url
+    #   end
+    # end
 
-    def self.down
+    # def self.down
+    #   drop_table :links 
+    # end
+
+  def change
+    create_table :links do |t|
+      t.string :url
+      t.timestamps
     end
+  end
 
 end
