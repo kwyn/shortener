@@ -44,6 +44,11 @@ get '/new' do
     erb :form
 end
 
+get '/:id' do
+    link = Link.find(params[:id])
+    redirect link.url
+end
+
 post '/new' do 
     link = Link.create(params)
     link.url
