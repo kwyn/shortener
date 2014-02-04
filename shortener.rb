@@ -31,6 +31,7 @@ end
 class Link < ActiveRecord::Base
 end
 
+
 ###########################################################
 # Routes
 ###########################################################
@@ -46,6 +47,8 @@ end
 
 get '/:id' do
   link = Link.find params[:id]
+  link.visits += 1
+  link.save
   redirect link.url
 end
 
@@ -53,8 +56,8 @@ post '/new' do
   if Link.exists? params
     link = Link.find_by params
   else
-    link = Link.create params
+    link = Link.create url: params[:url], visits: 0
   end
-  id = link[:id]
-  id.to_s
+  content_type :json
+  link.to_json
 end

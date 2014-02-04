@@ -1,7 +1,7 @@
 class AddVisits < ActiveRecord::Migration
   def up
     change_table :links do |t|
-      add_column :links, :visits, :integer
+      add_column :links, :visits, :integer, default: 0
     end
   end
   def down

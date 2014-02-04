@@ -14,9 +14,9 @@ ActiveRecord::Schema.define(version: 20140204034620) do
 
   create_table "links", force: true do |t|
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "visits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "visits",     default: 0
   end
 
 end

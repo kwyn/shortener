@@ -12,10 +12,9 @@
 <script type="text/javascript">
   $(function() {
     $('#myForm').submit(function() {
-    $.post('/new', $("#myForm").serialize(), function(data){
-      console.log(data);
-      console.log(typeof data);
-      var $url = $('<a>', {href: data}).append(data);
+    $.post('/new', $("#myForm").serialize(), function(link){
+      // var link = JSON.parse(data);
+      var $url = $('<a>', {href: link.url}).append(link.id);
       var $shortcode = $('<div>').append("Your Code:/").append($url);
       $('#shortcode').append($shortcode.hide().fadeIn());
       });

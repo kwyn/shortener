@@ -5,3 +5,7 @@ body {
 .links {
   list-style-type: none;
 }
+
+label {
+  display: block;
+}
