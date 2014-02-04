@@ -10,15 +10,15 @@ require 'json'
 set :public_folder, File.dirname(__FILE__) + '/public'
 
 configure :development, :production do
-    ActiveRecord::Base.establish_connection(
-       :adapter => 'sqlite3',
-       :database =>  'db/dev.sqlite3.db'
-     )
+  ActiveRecord::Base.establish_connection(
+    :adapter => 'sqlite3',
+    :database =>  'db/dev.sqlite3.db'
+  )
 end
 
 # Handle potential connection pool timeout issues
 after do
-    ActiveRecord::Base.connection.close
+  ActiveRecord::Base.connection.close
 end
 
 ###########################################################
@@ -36,22 +36,25 @@ end
 ###########################################################
 
 get '/' do
-    @links = Link.all
-    erb :index
+  @links = Link.all
+  erb :index
 end
 
 get '/new' do
-    erb :form
+  erb :form
 end
 
 get '/:id' do
-    link = Link.find(params[:id])
-    redirect link.url
+  link = Link.find params[:id]
+  redirect link.url
 end
 
-post '/new' do 
-    link = Link.create(params)
-    link.url
+post '/new' do
+  if Link.exists? params
+    link = Link.find_by params
+  else
+    link = Link.create params
+  end
+  id = link[:id]
+  id.to_s
 end
-
-# MORE ROUTES GO HERE

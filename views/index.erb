@@ -3,7 +3,8 @@
 <ul class="links">
 <% @links.each do |link| %>
   <li>
-    <a href="/<%= link.id %>"><%= link.url %></a>
+    <!-- <label><%= link.alias %></label> -->
+    <a href="/<%= link.id %>"><%= link.id %></a>
   </li>
 <% end %>
 </ul>

@@ -16,7 +16,7 @@
       console.log(data);
       console.log(typeof data);
       var $url = $('<a>', {href: data}).append(data);
-      var $shortcode = $('<div>').append("Your Code:").append($url);
+      var $shortcode = $('<div>').append("Your Code:/").append($url);
       $('#shortcode').append($shortcode.hide().fadeIn());
       });
     return false;
