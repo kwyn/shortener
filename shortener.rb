@@ -29,6 +29,11 @@ end
 # http://guides.rubyonrails.org/association_basics.html
 
 class Link < ActiveRecord::Base
+  has_many :clicks, dependent: :destroy
+end
+
+class Click < ActiveRecord::Base
+  belongs_to :link
 end
 
 
@@ -37,8 +42,16 @@ end
 ###########################################################
 
 get '/' do
+  # @links = Link.all
+  # @clicks = Click.all
+  # # erb :index
+  # content_type :json
+  # @clicks.to_json
+
   @links = Link.all
+  @clicks = @links.map do |link| link.clicks.last end
   erb :index
+  
 end
 
 get '/new' do
@@ -49,6 +62,11 @@ get '/:id' do
   link = Link.find params[:id]
   link.visits += 1
   link.save
+
+  #Add Click
+  puts request.referer
+  click = link.clicks.create source: request.referer
+  puts click.to_json
   redirect link.url
 end
 

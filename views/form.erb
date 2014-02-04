@@ -14,7 +14,7 @@
     $('#myForm').submit(function() {
     $.post('/new', $("#myForm").serialize(), function(link){
       // var link = JSON.parse(data);
-      var $url = $('<a>', {href: link.url}).append(link.id);
+      var $url = $('<a>', {href: '/'+link.id}).append(link.id);
       var $shortcode = $('<div>').append("Your Code:/").append($url);
       $('#shortcode').append($shortcode.hide().fadeIn());
       });

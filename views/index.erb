@@ -5,6 +5,11 @@
   <li>
     <label>Number of visits: <%= link.visits %></label>
     <a href="/<%= link.id %>">Path: /<%= link.id %></a>
+    <% @clicks.each do |click| %>
+	    <% if click.link_id == link.id %>
+		    <label>Last Click: <%= click.created_at %></label>
+	    <% end %>
+    <% end %>
   </li>
 <% end %>
 </ul>
